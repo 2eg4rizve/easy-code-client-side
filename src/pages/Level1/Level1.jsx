@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable no-unused-vars */
+import { Link } from "react-router-dom";
 import useLevel from "../../hooks/useLevel";
+import { useEffect } from "react";
 
 
 const Level1 = () => {
@@ -12,11 +14,18 @@ const Level1 = () => {
         return <p>Loading ..................</p>
     }
 
+    const myLevel = level?.filter(item => item?.levelName == 'Level1')
+
+    console.log("level : ", level);
+    console.log("my level : ", myLevel);
+
+
+
     return (
         <div>
             Level1
 
-            <p>Len  :  {level.length}</p>
+            <p>Total  :  {myLevel.length}</p>
 
             <div className="overflow-x-auto">
                 <table className="table">
@@ -30,12 +39,12 @@ const Level1 = () => {
                     </thead>
                     <tbody>
                         {
-                            level.map((item, index) => <tr key={item._id}>
+                            myLevel.map((item, index) => <tr key={item._id}>
                                 <th>
                                     {index + 1}
                                 </th>
                                 <td>
-                                    {item.problemUrl}
+                                    <Link to={item.problemUrl} target="_blank" > {item.problemUrl}</Link>
                                 </td>
 
 
