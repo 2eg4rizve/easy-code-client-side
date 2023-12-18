@@ -17,6 +17,8 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
 
+    const[currentLevel,setCurrentLevel] = useState("level1");
+
     //google login
     const googleLogin = () => {
         setLoading(true);
@@ -83,7 +85,9 @@ const AuthProvider = ({ children }) => {
         user,
         loading,
         githubLogin,
-        handleUpdateProfile
+        handleUpdateProfile,
+        currentLevel,
+        setCurrentLevel
 
 
     }

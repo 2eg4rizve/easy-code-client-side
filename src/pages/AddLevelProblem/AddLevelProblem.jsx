@@ -18,12 +18,13 @@ const AddLevelProblem = () => {
 
         
         const levelName = selectedItem || "";
+        const problemName = form?.problemName?.value || "";
         const problemUrl = form?.problemUrl?.value || "";
 
         // console.log("authorName : ", authorName);
         // console.log("levelName : ", levelName);
 
-        const newCode = { levelName, problemUrl }
+        const newCode = { levelName,problemName, problemUrl }
 
         console.log("newCode : ", newCode);
 
@@ -80,12 +81,25 @@ const AddLevelProblem = () => {
                                 <option value="">Select a Level </option>
                                 <option value="Level1">Level - 1</option>
                                 <option value="Level2">Level - 2</option>
+                                <option value="Level3">Level - 3</option>
+                                <option value="Level3">Level - 4</option>
 
 
                             </select>
 
                         </div>
 
+                    </div>
+
+
+                    {/*Problem Name */}
+                    <div className="form-control w-full mb-4">
+                        <label className="label">
+                            <span className="label-text">Problem Name</span>
+                        </label>
+                        <label className="input-group">
+                            <input type="text" name='problemName' placeholder="Problem Name" className="input input-bordered w-full" required />
+                        </label>
                     </div>
 
 
