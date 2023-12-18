@@ -10,10 +10,10 @@ const Level = () => {
     const {currentLevel,setCurrentLevel,user} =useContext(AuthContext);
 
     return (
-        <div className="px-[20px] ">
+        <div className=" ">
             <Navbar></Navbar>
 
-            <div className="flex flex-col lg:flex-row">
+            <div className="flex flex-col lg:flex-row px-[20px]" >
                 <div className="w-full lg:w-64 min-h-screen bg-blue-300 mr-[20px] space-y-10">
 
                     <ul className="p-[10px] ">
@@ -28,8 +28,11 @@ const Level = () => {
 
                         <div className="divider"></div>
 
+                         {
+                            user?.email == "rizve@gmail.com" &&  <li><NavLink to="/level/addLevelProblem">Add Level Problem </NavLink></li>
+                         }   
 
-                        <li><NavLink to="/level/addLevelProblem">Add Level Problem </NavLink></li>
+                       
                     </ul>
 
 

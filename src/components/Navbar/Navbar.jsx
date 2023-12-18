@@ -24,17 +24,7 @@ const Navbar = () => {
 
         <div className="mr-[20px]"></div>
 
-        <NavLink
-            to="/about"
-            className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "text-[#362FD9] underline font-bold" : ""
-            }
-        >
-            About
-        </NavLink>
-
-        <div className="mr-[20px]"></div>
-
+     
 
         <NavLink
             to="/level/levelX"

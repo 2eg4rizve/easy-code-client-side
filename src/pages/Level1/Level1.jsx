@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 import useLevel from "../../hooks/useLevel";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 
 const Level1 = () => {
-    const { currentLevel, setCurrentLevel } = useContext(AuthContext);
+    const { currentLevel, setCurrentLevel, user } = useContext(AuthContext);
 
 
     const [refetch, level, isLoading] = useLevel();
@@ -34,17 +36,17 @@ const Level1 = () => {
         title = "Level 2"
     }
 
-    if (currentLevel == "level3"){
+    if (currentLevel == "level3") {
         myLevel = level?.filter(item => item?.levelName == 'Level3')
-        title="Level 3"
+        title = "Level 3"
     }
-        
 
-    if (currentLevel == "level4"){
+
+    if (currentLevel == "level4") {
         myLevel = level?.filter(item => item?.levelName == 'Level4')
-        title="Level 4"
+        title = "Level 4"
     }
-       
+
 
     // if (currentLevel == "Level2")
     //     myLevel = level?.filter(item => item?.levelName == "Level2")
@@ -60,6 +62,37 @@ const Level1 = () => {
     //       myLevel=Level1
 
 
+    const handleDelete = id => {
+        console.log("delete id : ", id);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                fetch(`http://localhost:5000/level/${id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            refetch();
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    })
+            }
+        });
+    }
+
 
 
 
@@ -68,7 +101,7 @@ const Level1 = () => {
 
 
             <p className="text-center text-[30px] font-bold">{title}</p>
-            <p className="mb-[15px]">Total  Problem :  {myLevel.length}</p>
+            <p className="mb-[15px]">Total  Problem :  {myLevel?.length}</p>
 
             <div className="overflow-x-auto">
                 <table className="table">
@@ -77,6 +110,9 @@ const Level1 = () => {
                         <tr>
                             <th>#</th>
                             <th className="font-bold">Problem Name</th>
+                            {
+                                user?.email == "rizve@gmail.com" && <th>Action</th>
+                            }
 
                         </tr>
                     </thead>
@@ -89,6 +125,16 @@ const Level1 = () => {
                                 <td>
                                     <Link className="text-blue-600 font-bold" to={item.problemUrl} target="_blank" > {item.problemName}</Link>
                                 </td>
+                                {
+                                    user?.email=="rizve@gmail.com"&&<td>
+                                        <button
+                                            onClick={() => handleDelete(item._id)}
+                                            className="btn btn-ghost btn-sm">
+                                            Delete
+
+                                        </button>
+                                    </td>
+                                }
 
 
                             </tr>)
