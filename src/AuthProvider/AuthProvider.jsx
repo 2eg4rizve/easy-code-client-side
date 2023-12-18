@@ -18,6 +18,7 @@ const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     const[currentLevel,setCurrentLevel] = useState("level1");
+    const[currentCategory,setCurrentCategory] = useState("binarySearch");
 
     //google login
     const googleLogin = () => {
@@ -87,7 +88,10 @@ const AuthProvider = ({ children }) => {
         githubLogin,
         handleUpdateProfile,
         currentLevel,
-        setCurrentLevel
+        setCurrentLevel,
+        currentCategory,
+        setCurrentCategory
+
 
 
     }

@@ -2,7 +2,7 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 
 
-const AddLevelProblem = () => {
+const AddCategoryProblem = () => {
 
     const [selectedItem, setSelectedItem] = useState('');
 
@@ -16,15 +16,15 @@ const AddLevelProblem = () => {
 
         const form = event.target;
 
-        
-        const levelName = selectedItem || "";
+
+        const levelName= selectedItem || "";
         const problemName = form?.problemName?.value || "";
         const problemUrl = form?.problemUrl?.value || "";
 
         // console.log("authorName : ", authorName);
-        // console.log("levelName : ", levelName);
+        // console.log("levelName: ", categoryName);
 
-        const newCode = { levelName,problemName, problemUrl }
+        const newCode = { levelName, problemName, problemUrl }
 
         console.log("newCode : ", newCode);
 
@@ -50,21 +50,14 @@ const AddLevelProblem = () => {
                 }
             })
     }
-
-
     return (
         <div>
-           
-          
+
+
+
             <div className="bg-[#EEEEEE] p-10 text-black">
-            <p className="text-3xl font-bold text-center mb-[30px] "> Add Level Problem</p>
-
+                <p className="text-3xl font-bold text-center mb-[30px] "> Add Category Problem</p>
                 <form onSubmit={handleAdd}>
-
-
-
-
-
 
 
                     {/* Category Name */}
@@ -79,11 +72,11 @@ const AddLevelProblem = () => {
                                 required
                                 className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             >
-                                <option value="">Select a Level </option>
-                                <option value="Level1">Level - 1</option>
-                                <option value="Level2">Level - 2</option>
-                                <option value="Level3">Level - 3</option>
-                                <option value="Level4">Level - 4</option>
+                                <option value="">Select a Category </option>
+                                <option value="binarySearch">Binary Search</option>
+                                <option value="graphs">Graphs</option>
+                                <option value="dynamicProgramming">Dynamic Programming</option>
+                                <option value="greedy">Greedy</option>
 
 
                             </select>
@@ -137,4 +130,4 @@ const AddLevelProblem = () => {
     );
 };
 
-export default AddLevelProblem;
+export default AddCategoryProblem;

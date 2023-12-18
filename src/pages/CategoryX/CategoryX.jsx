@@ -1,13 +1,15 @@
-/* eslint-disable react/jsx-key */
 /* eslint-disable no-unused-vars */
-import { Link } from "react-router-dom";
-import useLevel from "../../hooks/useLevel";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import useLevel from "../../hooks/useLevel";
+import { Link } from "react-router-dom";
 
 
-const Level1 = () => {
-    const { currentLevel, setCurrentLevel } = useContext(AuthContext);
+
+const CategoryX = () => {
+
+    const { currentCategory } = useContext(AuthContext);
+
 
 
     const [refetch, level, isLoading] = useLevel();
@@ -16,58 +18,51 @@ const Level1 = () => {
         return <p>Loading ..................</p>
     }
 
-    console.log("currentLevel : ", { currentLevel })
+    console.log("currentCategory : ", { currentCategory })
 
     // const myLevel = level?.filter(item => item?.levelName == 'Level1')
 
     let myLevel = [];
     let title = "";
 
-    if (currentLevel == "level1") {
-        myLevel = level?.filter(item => item?.levelName == 'Level1')
-        title = "Level 1"
+    if (currentCategory == "binarySearch") {
+        myLevel = level?.filter(item => item?.levelName == 'binarySearch')
+        title = "Binary Search"
     }
 
 
-    if (currentLevel == "level2") {
-        myLevel = level?.filter(item => item?.levelName == 'Level2')
-        title = "Level 2"
+    if (currentCategory == "graphs") {
+        myLevel = level?.filter(item => item?.levelName == 'graphs')
+        title = "Graphs"
     }
 
-    if (currentLevel == "level3"){
-        myLevel = level?.filter(item => item?.levelName == 'Level3')
-        title="Level 3"
-    }
-        
 
-    if (currentLevel == "level4"){
-        myLevel = level?.filter(item => item?.levelName == 'Level4')
-        title="Level 4"
+    if (currentCategory == "dynamicProgramming"){
+        myLevel = level?.filter(item => item?.levelName == 'dynamicProgramming')
+        title = "Dynamic Program"
     }
        
 
-    // if (currentLevel == "Level2")
+    if (currentCategory == "greedy"){
+        myLevel = level?.filter(item => item?.levelName == 'greedy')
+        title = "Greedy"
+    }
+       
+
+    // if (currentCategory == "Level2")
     //     myLevel = level?.filter(item => item?.levelName == "Level2")
 
     // console.log("level : ", level);
     console.log("my level : ", myLevel);
 
-    // const Level1 = level?.filter(item => item?.levelName == 'Level1')
-    // const Level2 = level?.filter(item => item?.levelName == 'Level2')
-    // const Level3 = level?.filter(item => item?.levelName == 'Level3')
-
-    // if(currentLevel=="level1")
-    //       myLevel=Level1
-
-
-
-
-
     return (
         <div>
 
 
+
+
             <p className="text-center text-[30px] font-bold">{title}</p>
+            
             <p className="mb-[15px]">Total  Problem :  {myLevel.length}</p>
 
             <div className="overflow-x-auto">
@@ -83,7 +78,7 @@ const Level1 = () => {
                     <tbody>
                         {
                             myLevel.map((item, index) => <tr key={item._id}>
-                                <th>
+                                <th className="w-[30px]">
                                     {index + 1}
                                 </th>
                                 <td>
@@ -108,4 +103,4 @@ const Level1 = () => {
     );
 };
 
-export default Level1;
+export default CategoryX;

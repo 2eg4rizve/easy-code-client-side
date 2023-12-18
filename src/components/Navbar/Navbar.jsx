@@ -37,12 +37,23 @@ const Navbar = () => {
 
 
         <NavLink
-            to="/level/level1"
+            to="/level/levelX"
             className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "text-[#362FD9] underline font-bold" : ""
             }
         >
-           level
+           Level
+        </NavLink>
+
+        <div className="mr-[20px]"></div>
+
+        <NavLink
+            to="/category/categoryX"
+            className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "text-[#362FD9] underline font-bold" : ""
+            }
+        >
+           Category
         </NavLink>
 
         

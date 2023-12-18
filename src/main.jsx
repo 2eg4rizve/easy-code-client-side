@@ -16,6 +16,9 @@ import Level1 from './pages/Level1/Level1';
 import Level2 from './pages/Level2/Level2';
 import AddLevelProblem from './pages/AddLevelProblem/AddLevelProblem';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import Category from './pages/Category/Category';
+import CategoryX from './pages/CategoryX/CategoryX';
+import AddCategoryProblem from './pages/AddCategoryProblem/AddCategoryProblem';
 
 
 
@@ -44,7 +47,7 @@ const router = createBrowserRouter([
     element: <Level></Level>,
     children: [
       {
-        path: 'level1',
+        path: 'levelX',
         element: <Level1></Level1>
       },
       {
@@ -54,6 +57,24 @@ const router = createBrowserRouter([
       {
         path: 'addLevelProblem',
         element: <AddLevelProblem></AddLevelProblem>
+
+      }
+
+    ]
+
+  },
+  {
+    path: 'category',
+    element: <Category></Category>,
+    children: [
+      {
+        path: 'categoryX',
+        element: <CategoryX></CategoryX>
+      },
+     
+      {
+        path: 'addCategoryProblem',
+        element: <AddCategoryProblem></AddCategoryProblem>
 
       }
 
