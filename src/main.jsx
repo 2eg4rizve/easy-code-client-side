@@ -20,6 +20,7 @@ import CategoryX from './pages/CategoryX/CategoryX';
 import AddCategoryProblem from './pages/AddCategoryProblem/AddCategoryProblem';
 import AddLevel from './pages/AddLevel/AddLevel';
 import AddCategory from './pages/AddCategory/AddCategory';
+import Resources from './pages/Resources/Resources';
 
 
 
@@ -86,6 +87,10 @@ const router = createBrowserRouter([
 
     ]
 
+  },
+  {
+    path: 'resources',
+    element: <Resources></Resources>
   }
 ]);
 

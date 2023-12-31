@@ -24,7 +24,7 @@ const Navbar = () => {
 
         <div className="mr-[20px]"></div>
 
-     
+
 
         <NavLink
             to="/level/levelX"
@@ -32,7 +32,7 @@ const Navbar = () => {
                 isPending ? "pending" : isActive ? "text-[#362FD9] underline font-bold" : ""
             }
         >
-           Level
+            Level
         </NavLink>
 
         <div className="mr-[20px]"></div>
@@ -43,10 +43,21 @@ const Navbar = () => {
                 isPending ? "pending" : isActive ? "text-[#362FD9] underline font-bold" : ""
             }
         >
-           Category
+            Category
         </NavLink>
 
-        
+        <div className="mr-[20px]"></div>
+
+        <NavLink
+            to="/resources"
+            className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "text-[#362FD9] underline font-bold" : ""
+            }
+        >
+            Resources
+        </NavLink>
+
+
 
 
 
@@ -98,7 +109,7 @@ const Navbar = () => {
                                 </div>
 
                                 <div>
-                                    
+
                                     <button
                                         onClick={logOut}
                                         className="btn btn-sm  btn-primary bg-[#F4E869] text-black">Logout</button>
