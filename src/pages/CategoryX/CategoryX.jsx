@@ -24,36 +24,39 @@ const CategoryX = () => {
     // const myLevel = level?.filter(item => item?.levelName == 'Level1')
 
     let myLevel = [];
-    let title = "";
+    // let title = "";
 
-    if (currentCategory == "binarySearch") {
-        myLevel = level?.filter(item => item?.levelName == 'binarySearch')
-        title = "Binary Search"
-    }
-
-
-    if (currentCategory == "graphs") {
-        myLevel = level?.filter(item => item?.levelName == 'graphs')
-        title = "Graphs"
-    }
+    // if (currentCategory == "binarySearch") {
+    //     myLevel = level?.filter(item => item?.levelName == 'binarySearch')
+    //     title = "Binary Search"
+    // }
 
 
-    if (currentCategory == "dynamicProgramming") {
-        myLevel = level?.filter(item => item?.levelName == 'dynamicProgramming')
-        title = "Dynamic Program"
-    }
+    // if (currentCategory == "graphs") {
+    //     myLevel = level?.filter(item => item?.levelName == 'graphs')
+    //     title = "Graphs"
+    // }
 
 
-    if (currentCategory == "greedy") {
-        myLevel = level?.filter(item => item?.levelName == 'greedy')
-        title = "Greedy"
-    }
+    // if (currentCategory == "dynamicProgramming") {
+    //     myLevel = level?.filter(item => item?.levelName == 'dynamicProgramming')
+    //     title = "Dynamic Program"
+    // }
+
+
+    // if (currentCategory == "greedy") {
+    //     myLevel = level?.filter(item => item?.levelName == 'greedy')
+    //     title = "Greedy"
+    // }
 
 
     // if (currentCategory == "Level2")
     //     myLevel = level?.filter(item => item?.levelName == "Level2")
 
     // console.log("level : ", level);
+
+    myLevel = level?.filter(item => item?.levelName == currentCategory)
+
     console.log("my level : ", myLevel);
 
     const handleDelete = id => {
@@ -69,7 +72,7 @@ const CategoryX = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/level/${id}`, {
+                fetch(`https://easy-code-server.vercel.app/level/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -94,19 +97,19 @@ const CategoryX = () => {
 
 
 
-            <p className="text-center text-[30px] font-bold">{title}</p>
+            <p className="text-center text-[30px] font-bold">{currentCategory}</p>
 
             <p className="mb-[15px]">Total  Problem :  {myLevel.length}</p>
 
             <div className="overflow-x-auto">
-                <table className="table">
+                <table className="table table-zebra">
                     {/* head */}
                     <thead>
                         <tr>
                             <th>#</th>
                             <th className="font-bold">Problem Name</th>
 
-                            
+
                             {
                                 user?.email == "rizve@gmail.com" && <th>Action</th>
                             }
@@ -118,7 +121,10 @@ const CategoryX = () => {
                         {
                             myLevel.map((item, index) => <tr key={item._id}>
                                 <th className="w-[30px]">
-                                    {index + 1}
+                                    <div className="flex">
+                                        {index + 1}
+                                        <input type="checkbox" className="checkbox ml-4" />
+                                    </div>
                                 </th>
                                 <td>
                                     <Link className="text-blue-600 font-bold" to={item.problemUrl} target="_blank" > {item.problemName}</Link>

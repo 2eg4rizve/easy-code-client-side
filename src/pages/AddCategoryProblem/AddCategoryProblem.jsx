@@ -1,10 +1,18 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/jsx-key */
 import { useState } from "react";
 import Swal from "sweetalert2";
+import useCategoryTitle from "../../hooks/useCategoryTitle";
 
 
 const AddCategoryProblem = () => {
 
     const [selectedItem, setSelectedItem] = useState('');
+    const [refetch,categoryTitle, isLoading] =useCategoryTitle();
+
+    if(isLoading){
+        return <p>Loading............</p>
+    }
 
     const handleSelectChange = (event) => {
         setSelectedItem(event.target.value);
@@ -30,7 +38,7 @@ const AddCategoryProblem = () => {
 
 
 
-        fetch('http://localhost:5000/level', {
+        fetch('https://easy-code-server.vercel.app/level', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -72,11 +80,14 @@ const AddCategoryProblem = () => {
                                 required
                                 className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             >
-                                <option value="">Select a Category </option>
-                                <option value="binarySearch">Binary Search</option>
-                                <option value="graphs">Graphs</option>
-                                <option value="dynamicProgramming">Dynamic Programming</option>
-                                <option value="greedy">Greedy</option>
+                                 <option value="">Select a Level </option>
+                                
+                                {
+                                   categoryTitle.map(item => <option value={item.categoryName}> {item.categoryName}</option>)
+
+                                }
+                             
+                            
 
 
                             </select>

@@ -8,7 +8,7 @@ const useLevel = () => {
 
       queryKey: ['level'],
       queryFn: async () =>{
-        const res = await axios.get('http://localhost:5000/level')
+        const res = await axios.get('https://easy-code-server.vercel.app/level')
         return res.data;
       }
 

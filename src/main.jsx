@@ -13,12 +13,13 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
 import Level from './pages/Level/Level';
 import Level1 from './pages/Level1/Level1';
-import Level2 from './pages/Level2/Level2';
 import AddLevelProblem from './pages/AddLevelProblem/AddLevelProblem';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Category from './pages/Category/Category';
 import CategoryX from './pages/CategoryX/CategoryX';
 import AddCategoryProblem from './pages/AddCategoryProblem/AddCategoryProblem';
+import AddLevel from './pages/AddLevel/AddLevel';
+import AddCategory from './pages/AddCategory/AddCategory';
 
 
 
@@ -51,12 +52,13 @@ const router = createBrowserRouter([
         element: <Level1></Level1>
       },
       {
-        path: 'level2',
-        element: <Level2></Level2>
-      },
-      {
         path: 'addLevelProblem',
         element: <AddLevelProblem></AddLevelProblem>
+
+      },
+      {
+        path: 'addLevel',
+        element: <AddLevel></AddLevel>
 
       }
 
@@ -71,7 +73,11 @@ const router = createBrowserRouter([
         path: 'categoryX',
         element: <CategoryX></CategoryX>
       },
-     
+      {
+        path: 'addCategory',
+        element: <AddCategory></AddCategory>
+
+      },
       {
         path: 'addCategoryProblem',
         element: <AddCategoryProblem></AddCategoryProblem>
@@ -95,3 +101,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
   </React.StrictMode>,
 )
+
+// https://easycode-cfbc4.web.app/

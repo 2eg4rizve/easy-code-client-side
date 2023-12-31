@@ -1,10 +1,21 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/jsx-key */
 import { useState } from "react";
 import Swal from "sweetalert2";
+import useLevelTitle from "../../hooks/useLevelTitle";
 
 
 const AddLevelProblem = () => {
 
     const [selectedItem, setSelectedItem] = useState('');
+
+    const  [refetch,levelTitle,isloading] = useLevelTitle();
+
+    if(isloading){
+        return <p>Loading................</p>
+    }
+    
+    console.log("LevelTitle : ",levelTitle);
 
     const handleSelectChange = (event) => {
         setSelectedItem(event.target.value);
@@ -30,7 +41,7 @@ const AddLevelProblem = () => {
 
 
 
-        fetch('http://localhost:5000/level', {
+        fetch('https://easy-code-server.vercel.app/level', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -80,10 +91,12 @@ const AddLevelProblem = () => {
                                 className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             >
                                 <option value="">Select a Level </option>
-                                <option value="Level1">Level - 1</option>
-                                <option value="Level2">Level - 2</option>
-                                <option value="Level3">Level - 3</option>
-                                <option value="Level4">Level - 4</option>
+                                
+                                {
+                                    levelTitle.map(item => <option value={item.levelName}> {item.levelName}</option>)
+
+                                }
+                             
 
 
                             </select>

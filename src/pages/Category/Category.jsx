@@ -1,11 +1,20 @@
+/* eslint-disable no-unused-vars */
 import { NavLink, Outlet } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import useCategoryTitle from "../../hooks/useCategoryTitle";
 
 const Category = () => {
 
     const { currentCategory, setCurrentCategory, user } = useContext(AuthContext);
+
+    const [refetch, categoryTitle, isLoading] = useCategoryTitle();
+
+    if (isLoading) {
+
+        return <p>Loading..............</p>
+    }
 
 
 
@@ -18,19 +27,35 @@ const Category = () => {
 
                     <ul className="p-[10px] ">
 
-                        <li style={{ background: currentCategory == "binarySearch" ? "red" : "" }}><NavLink to="/category/categoryX"><button onClick={() => setCurrentCategory("binarySearch")}>Binary Search</button></NavLink> </li>
+                       
 
-                        <li style={{ background: currentCategory == "graphs" ? "red" : "" }} ><NavLink to="/category/categoryX"><button onClick={() => setCurrentCategory("graphs")}>Graphs</button></NavLink> </li>
+                        {
+                            categoryTitle.map(item =>
+                                <li
+                                    key={item._id}
+                                    className="pl-[10px]"
+                                    style={{ background: currentCategory == item.categoryName ? "red" : "" }} >
+                                    <NavLink to="/category/categoryX">
+                                        <button onClick={() => setCurrentCategory(item.categoryName)}>{item.categoryName}</button>
+                                    </NavLink>
+                                </li>)
 
-                        <li style={{ background: currentCategory == "dynamicProgramming" ? "red" : "" }} ><NavLink to="/category/categoryX"><button onClick={() => setCurrentCategory("dynamicProgramming")}>Dynamic Programming</button></NavLink> </li>
 
-                        <li style={{ background: currentCategory == "greedy" ? "red" : "" }} ><NavLink to="/category/categoryX"><button onClick={() => setCurrentCategory("greedy")}>Greedy</button></NavLink> </li>
+                        }
+
+
 
 
                         <div className="divider"></div>
 
                         {
-                            user?.email == "rizve@gmail.com" && <li><NavLink to="/category/addCategoryProblem">Add Category Problem </NavLink></li>
+                            user?.email == "rizve@gmail.com" && <li ><NavLink to="/category/addCategoryProblem">Add Category Problem </NavLink></li>
+
+                        }
+
+
+                        {
+                            user?.email == "rizve@gmail.com" && <li><NavLink to="/category/addCategory">Add Category </NavLink></li>
 
                         }
 

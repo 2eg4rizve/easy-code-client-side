@@ -23,44 +23,15 @@ const Level1 = () => {
     // const myLevel = level?.filter(item => item?.levelName == 'Level1')
 
     let myLevel = [];
-    let title = "";
+   
 
-    if (currentLevel == "level1") {
-        myLevel = level?.filter(item => item?.levelName == 'Level1')
-        title = "Level 1"
-    }
+    myLevel = level?.filter(item => item?.levelName == currentLevel)
 
 
-    if (currentLevel == "level2") {
-        myLevel = level?.filter(item => item?.levelName == 'Level2')
-        title = "Level 2"
-    }
-
-    if (currentLevel == "level3") {
-        myLevel = level?.filter(item => item?.levelName == 'Level3')
-        title = "Level 3"
-    }
-
-
-    if (currentLevel == "level4") {
-        myLevel = level?.filter(item => item?.levelName == 'Level4')
-        title = "Level 4"
-    }
-
-
-    // if (currentLevel == "Level2")
-    //     myLevel = level?.filter(item => item?.levelName == "Level2")
-
-    // console.log("level : ", level);
+    
     console.log("my level : ", myLevel);
 
-    // const Level1 = level?.filter(item => item?.levelName == 'Level1')
-    // const Level2 = level?.filter(item => item?.levelName == 'Level2')
-    // const Level3 = level?.filter(item => item?.levelName == 'Level3')
-
-    // if(currentLevel=="level1")
-    //       myLevel=Level1
-
+   
 
     const handleDelete = id => {
         console.log("delete id : ", id);
@@ -75,7 +46,7 @@ const Level1 = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/level/${id}`, {
+                fetch(`https://easy-code-server.vercel.app/level/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -100,8 +71,9 @@ const Level1 = () => {
         <div>
 
 
-            <p className="text-center text-[30px] font-bold">{title}</p>
+            <p className="text-center text-[30px] font-bold"> {currentLevel}</p>
             <p className="mb-[15px]">Total  Problem :  {myLevel?.length}</p>
+          
 
             <div className="overflow-x-auto">
                 <table className="table">
@@ -120,13 +92,17 @@ const Level1 = () => {
                         {
                             myLevel.map((item, index) => <tr key={item._id}>
                                 <th>
-                                    {index + 1}
+                                    <div className="flex">
+                                        {index + 1}
+                                        <input type="checkbox" className="checkbox ml-4" />
+                                    </div>
                                 </th>
+
                                 <td>
                                     <Link className="text-blue-600 font-bold" to={item.problemUrl} target="_blank" > {item.problemName}</Link>
                                 </td>
                                 {
-                                    user?.email=="rizve@gmail.com"&&<td>
+                                    user?.email == "rizve@gmail.com" && <td>
                                         <button
                                             onClick={() => handleDelete(item._id)}
                                             className="btn btn-ghost btn-sm">
